@@ -12,6 +12,7 @@
 		954A67E52053E54F001781EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954A67E32053E54F001781EC /* Main.storyboard */; };
 		954A67E72053E54F001781EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 954A67E62053E54F001781EC /* Assets.xcassets */; };
 		954A67EA2053E54F001781EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954A67E82053E54F001781EC /* LaunchScreen.storyboard */; };
+		954A67F22053E912001781EC /* FleetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A67F12053E912001781EC /* FleetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		954A67E62053E54F001781EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		954A67E92053E54F001781EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		954A67EB2053E54F001781EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		954A67F12053E912001781EC /* FleetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				954A67DF2053E54F001781EC /* AppDelegate.swift */,
 				954A67E12053E54F001781EC /* ViewController.swift */,
+				954A67F12053E912001781EC /* FleetViewController.swift */,
 				954A67E32053E54F001781EC /* Main.storyboard */,
 				954A67E62053E54F001781EC /* Assets.xcassets */,
 				954A67E82053E54F001781EC /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				954A67E22053E54F001781EC /* ViewController.swift in Sources */,
+				954A67F22053E912001781EC /* FleetViewController.swift in Sources */,
 				954A67E02053E54F001781EC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
