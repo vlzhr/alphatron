@@ -16,7 +16,7 @@ class FleetViewController: UIViewController {
         let fleet = loadFleet(uid: 0)
         
         for (n, ship) in fleet.enumerated() {
-            let yDist = 100+n*250
+            let yDist = 30+(n+1)*220
             
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
             label.center = CGPoint(x: 160, y: yDist)
@@ -41,7 +41,7 @@ class FleetViewController: UIViewController {
                             let image = UIImage(data: imageData)
                             let imageView = UIImageView(image: image!)
                             imageView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
-                            imageView.center = CGPoint(x: 80, y: yDist+130)
+                            imageView.center = CGPoint(x: 80, y: yDist+90)
                             self.view.addSubview(imageView)
                             // Do something with your image.
                         } else {
@@ -57,6 +57,7 @@ class FleetViewController: UIViewController {
             
         }
         
+        
         // Do any additional setup after loading the view.
     }
 
@@ -64,6 +65,8 @@ class FleetViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBOutlet var imageExample: UIView!
     
     func loadFleet(uid: Int) -> [[String: String]] {
         // here is parsing !!!
