@@ -15,7 +15,6 @@
 		954A67F22053E912001781EC /* FleetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A67F12053E912001781EC /* FleetViewController.swift */; };
 		95ACCE292080091600BC6977 /* ShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACCE282080091600BC6977 /* ShipViewController.swift */; };
 		95ACCE2D2080188900BC6977 /* EquipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */; };
-		95ACCE3120801F6A00BC6977 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACCE3020801F6A00BC6977 /* DetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		954A67F12053E912001781EC /* FleetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleetViewController.swift; sourceTree = "<group>"; };
 		95ACCE282080091600BC6977 /* ShipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShipViewController.swift; sourceTree = "<group>"; };
 		95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquipTableViewCell.swift; sourceTree = "<group>"; };
-		95ACCE3020801F6A00BC6977 /* DetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +65,6 @@
 				954A67E32053E54F001781EC /* Main.storyboard */,
 				954A67F12053E912001781EC /* FleetViewController.swift */,
 				95ACCE282080091600BC6977 /* ShipViewController.swift */,
-				95ACCE3020801F6A00BC6977 /* DetailsView.swift */,
 				95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */,
 				954A67E62053E54F001781EC /* Assets.xcassets */,
 				954A67E82053E54F001781EC /* LaunchScreen.storyboard */,
@@ -153,7 +150,6 @@
 				95ACCE2D2080188900BC6977 /* EquipTableViewCell.swift in Sources */,
 				95ACCE292080091600BC6977 /* ShipViewController.swift in Sources */,
 				954A67E02053E54F001781EC /* AppDelegate.swift in Sources */,
-				95ACCE3120801F6A00BC6977 /* DetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

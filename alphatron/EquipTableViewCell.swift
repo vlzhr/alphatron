@@ -9,6 +9,9 @@
 import UIKit
 
 class EquipTableViewCell: UITableViewCell {
+    // the table cell class that's used by majority of tables (not only equipment table as you could think because of bad title :)) )
+    
+    
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var label2: UILabel!
 

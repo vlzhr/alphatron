@@ -12,11 +12,11 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var view1: UIView!
     @IBOutlet weak var view2: UITableView!
+    @IBOutlet weak var tabview1: UITableView!
     @IBOutlet weak var b1: UIButton!
     @IBOutlet weak var b2: UIButton!
     
     var shipNumber = 0
-
     
     @IBAction func button1(_ sender: Any) {
         view1.isHidden = false
@@ -35,36 +35,58 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
+    var data: [Int: [String: [String: String]]] = [
+        0: ["equipment": ["Gyro #1": "Tokyo Keiki", "Gyro #2": "Tokyo Keiki", "BNWAS": "Furumo"],
+            "details": ["Type of vessel": "Cruiseship", "Call Sign": "Alpha", "Gross Tonnage": "180 000"]],
+        1: ["equipment": ["Gyro #1": "Amsterdam Keiki", "Gyro #2": "Amsterdam Keiki", "BNWAS": "Uzumaki"],
+            "details": ["Type of vessel": "Cruiseship x2", "Call Sign": "Beta", "Gross Tonnage": "75 500"]]
+    ]
     
-    var equipment = ["Gyro #111", "Gyro #2", "BNWAS"]
-    var equipmentLabels = ["Tokyo Keiki", "Tokyo Keiki", "Furumo"]
+    var names: [Int: String] = [
+        0: "Ship #1",
+        1: "Ship #2"
+    ]
     
-    var details = ["Type of vessel", "Call Sign", "Gross Tonnage"]
-    var detailsValues = ["Cruiseship", "Alpha", "180 000"]
+    var equipment: [String: String] = [:]
+    
+    var details: [String: String] = [:]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
         Int {
             // Return the number of rows in the section.
-            return equipment.count
+            if (tableView == view2) { return equipment.count }
+            else { return details.count }
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
         UITableViewCell {
-            let cellIdentifier = "EquipCell"
-//            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-//            cell.textLabel?.text = equipment[indexPath.row]
-//            cell.imageView?.image = UIImage(named: "waitImage")
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! EquipTableViewCell
-            cell.label1.text = equipment[indexPath.row]
-            cell.label2.text = equipmentLabels[indexPath.row]
-            return cell }
+            if (tableView == view2) {
+                let cellIdentifier = "cell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! EquipTableViewCell
+                cell.label1.text = Array(equipment.keys)[indexPath.row]
+                cell.label2.text = Array(equipment.values)[indexPath.row]
+                return cell
+            }
+            else {
+                let cellIdentifier = "cell"
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! EquipTableViewCell
+                cell.label1.text = Array(details.keys)[indexPath.row]
+                cell.label2.text = Array(details.values)[indexPath.row]
+                return cell
+            }
+        }
     
     
     
     override func viewDidLoad() {
         
-        title = "Ship #" + String(1 + shipNumber)
+        //self.view2.register(UITableView.self, forCellReuseIdentifier: "cell")
+        //self.tabview1.register(UITableView.self, forCellReuseIdentifier: "cell")
+        
+        title = names[shipNumber]
+        equipment = (data[shipNumber]?["equipment"])!
+        details = (data[shipNumber]?["details"])!
         
         super.viewDidLoad()
 

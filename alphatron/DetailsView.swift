@@ -29,5 +29,6 @@ class DetailsView: UIView, UITableViewDataSource, UITableViewDelegate {
             cell.label2.text = details[indexPath.row]
             cell.label1.text = detailsValues[indexPath.row]
             return cell }
+
     
 }
