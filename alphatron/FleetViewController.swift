@@ -13,11 +13,12 @@ class FleetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let fleet = loadFleet(uid: 0)
+        
+        /* let fleet = loadFleet(uid: 0)
         
         for (n, ship) in fleet.enumerated() {
             let yDist = 30+(n+1)*220
-            
+         
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
             label.center = CGPoint(x: 160, y: yDist)
             label.textAlignment = .left
@@ -56,7 +57,7 @@ class FleetViewController: UIViewController {
             downloadPicTask.resume()
             
         }
-        
+        */
         
         // Do any additional setup after loading the view.
     }
