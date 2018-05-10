@@ -9,11 +9,14 @@
 import UIKit
 
 class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet weak var view1: UIView!
     @IBOutlet weak var view2: UITableView!
     @IBOutlet weak var b1: UIButton!
     @IBOutlet weak var b2: UIButton!
+    
+    var shipNumber = 0
+
     
     @IBAction func button1(_ sender: Any) {
         view1.isHidden = false
@@ -60,6 +63,9 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     override func viewDidLoad() {
+        
+        title = "Ship #" + String(1 + shipNumber)
+        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.

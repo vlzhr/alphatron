@@ -64,11 +64,11 @@
 			children = (
 				954A67DF2053E54F001781EC /* AppDelegate.swift */,
 				954A67E12053E54F001781EC /* ViewController.swift */,
-				954A67F12053E912001781EC /* FleetViewController.swift */,
 				954A67E32053E54F001781EC /* Main.storyboard */,
+				954A67F12053E912001781EC /* FleetViewController.swift */,
 				95ACCE282080091600BC6977 /* ShipViewController.swift */,
-				95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */,
 				95ACCE3020801F6A00BC6977 /* DetailsView.swift */,
+				95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */,
 				954A67E62053E54F001781EC /* Assets.xcassets */,
 				954A67E82053E54F001781EC /* LaunchScreen.storyboard */,
 				954A67EB2053E54F001781EC /* Info.plist */,

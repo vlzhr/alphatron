@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FleetViewController: UIViewController {
+class FleetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +66,41 @@ class FleetViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    let ships = ["Ship #1", "Ship #2"];
+    let shipsNumbers = ["IMO: 2564110", "IMO: 1452383"];
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
+        Int {
+            // Return the number of rows in the section.
+            return ships.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
+        UITableViewCell {
+            let cellIdentifier = "TableCell"
+            //            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+            //            cell.textLabel?.text = equipment[indexPath.row]
+            //            cell.imageView?.image = UIImage(named: "waitImage")
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! EquipTableViewCell
+            cell.label1.text = ships[indexPath.row]
+            cell.label2.text = shipsNumbers[indexPath.row]
+            return cell }
+    
+    var rowselected = Int()
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath:
+        IndexPath) {
+        rowselected = indexPath.row
+        performSegue(withIdentifier: "toShip", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nextView = segue.destination as! ShipViewController
+        nextView.shipNumber = rowselected
+    }
+    
+    
     
     @IBOutlet var imageExample: UIView!
     
