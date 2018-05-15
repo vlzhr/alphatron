@@ -10,6 +10,64 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Login-->
+        <scene sceneID="c1B-Z6-5Nr">
+            <objects>
+                <viewController title="Login" id="NPm-fV-onM" customClass="AuthViewController" customModule="alphatron" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gDT-s9-ZQ1"/>
+                        <viewControllerLayoutGuide type="bottom" id="xai-3g-Fc8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NbL-c8-fVb">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="M03-Id-Xa6">
+                                <rect key="frame" x="16" y="113" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vG2-ve-s1t">
+                                <rect key="frame" x="16" y="151" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please sign in to get this data!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3T-ze-ciy">
+                                <rect key="frame" x="16" y="52" width="343" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYf-Sq-7vM">
+                                <rect key="frame" x="16" y="199" width="143" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title=" Join!">
+                                    <color key="titleColor" red="0.99923485519999999" green="0.1778973043" blue="0.2096757591" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginBut:" destination="NPm-fV-onM" eventType="touchUpInside" id="Ir3-6q-AWu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Start Auth" id="cGo-tt-f9I"/>
+                    <connections>
+                        <outlet property="login" destination="M03-Id-Xa6" id="3KY-Nz-2PJ"/>
+                        <outlet property="password" destination="vG2-ve-s1t" id="oCy-YF-qq7"/>
+                        <segue destination="mi4-XQ-rsQ" kind="show" identifier="toFleet" id="zSR-BM-PoA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QNo-lY-AlP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2.3999999999999999" y="4.9475262368815596"/>
+        </scene>
         <!--Fleet-->
         <scene sceneID="BND-aU-7rG">
             <objects>
@@ -68,6 +126,7 @@
                     <navigationItem key="navigationItem" title="Fleet" id="YNJ-2j-93Z"/>
                     <connections>
                         <outlet property="imageExample" destination="asr-hS-kaX" id="rIt-h7-TS5"/>
+                        <outlet property="tb" destination="gZP-to-Uhg" id="8so-P6-CUE"/>
                         <segue destination="AHc-jg-O8O" kind="show" identifier="toShip" id="A2o-RD-sOO"/>
                     </connections>
                 </viewController>
@@ -104,7 +163,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mg7-s6-SSK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-270" y="335"/>
+            <point key="canvasLocation" x="-1510" y="314"/>
         </scene>
         <!--Item-->
         <scene sceneID="qPU-lM-gaU">
@@ -422,7 +481,7 @@
             <objects>
                 <navigationController id="mmV-bg-i5w" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="ReK-aC-R28"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="huM-Rj-dw6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="huM-Rj-dw6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="0.17953118400000001" blue="0.20856339930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -437,12 +496,12 @@
                         </userDefinedRuntimeAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="mi4-XQ-rsQ" kind="relationship" relationship="rootViewController" id="edw-AC-Uhh"/>
+                        <segue destination="NPm-fV-onM" kind="relationship" relationship="rootViewController" id="q8g-JF-Njg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tO-uV-MXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="194" y="-715"/>
+            <point key="canvasLocation" x="-786" y="-761"/>
         </scene>
     </scenes>
     <resources>

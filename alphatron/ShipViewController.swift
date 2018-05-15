@@ -42,10 +42,6 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
             "details": ["Type of vessel": "Cruiseship x2", "Call Sign": "Beta", "Gross Tonnage": "75 500"]]
     ]
     
-    var names: [Int: String] = [
-        0: "Ship #1",
-        1: "Ship #2"
-    ]
     
     var equipment: [String: String] = [:]
     
@@ -81,16 +77,13 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         
-        //self.view2.register(UITableView.self, forCellReuseIdentifier: "cell")
-        //self.tabview1.register(UITableView.self, forCellReuseIdentifier: "cell")
-        
-        title = names[shipNumber]
-        equipment = (data[shipNumber]?["equipment"])!
-        details = (data[shipNumber]?["details"])!
+        let ship = Global.fleet[shipNumber]
+        title = ship["Name"] as? String ?? ""
+        equipment = ship["equipment"] as? [String : String] ?? [:]
+        details = ["Type of vessel": ship["Type"] as? String ?? "", "Call Sign": ship["CallSign"] as? String ?? "", "Gross Tonnage": String(ship["GrossTonnage"] as? Int ?? 0)]
         
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

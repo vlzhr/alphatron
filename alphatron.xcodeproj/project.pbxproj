@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950BB2CE20A9ECC800D5536F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BB2CD20A9ECC800D5536F /* AuthViewController.swift */; };
 		954A67E02053E54F001781EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A67DF2053E54F001781EC /* AppDelegate.swift */; };
 		954A67E22053E54F001781EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A67E12053E54F001781EC /* ViewController.swift */; };
 		954A67E52053E54F001781EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954A67E32053E54F001781EC /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		950BB2CD20A9ECC800D5536F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		954A67DC2053E54F001781EC /* alphatron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = alphatron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		954A67DF2053E54F001781EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		954A67E12053E54F001781EC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				954A67DF2053E54F001781EC /* AppDelegate.swift */,
 				954A67E12053E54F001781EC /* ViewController.swift */,
 				954A67E32053E54F001781EC /* Main.storyboard */,
+				950BB2CD20A9ECC800D5536F /* AuthViewController.swift */,
 				954A67F12053E912001781EC /* FleetViewController.swift */,
 				95ACCE282080091600BC6977 /* ShipViewController.swift */,
 				95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */,
@@ -149,6 +152,7 @@
 				954A67F22053E912001781EC /* FleetViewController.swift in Sources */,
 				95ACCE2D2080188900BC6977 /* EquipTableViewCell.swift in Sources */,
 				95ACCE292080091600BC6977 /* ShipViewController.swift in Sources */,
+				950BB2CE20A9ECC800D5536F /* AuthViewController.swift in Sources */,
 				954A67E02053E54F001781EC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

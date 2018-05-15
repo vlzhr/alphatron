@@ -10,56 +10,50 @@ import UIKit
 
 class FleetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tb: UITableView!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
+        let link = Global.apiLink + "CompaniesVessels?user_id=6&id=1&token=" + Global.token
         
-        /* let fleet = loadFleet(uid: 0)
-        
-        for (n, ship) in fleet.enumerated() {
-            let yDist = 30+(n+1)*220
-         
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-            label.center = CGPoint(x: 160, y: yDist)
-            label.textAlignment = .left
-            label.text = ship["name"]
-            self.view.addSubview(label)
-            
-            
-            
-            let catPictureURL = URL(string: ship["image"]!)!
-            let session = URLSession(configuration: .default)
-            let downloadPicTask = session.dataTask(with: catPictureURL) { (data, response, error) in
-                if let e = error {
-                    print("Error downloading cat picture: \(e)")
-                } else {
-                    // No errors found.
-                    // It would be weird if we didn't have a response, so check for that too.
-                    if let res = response as? HTTPURLResponse {
-                        print("Downloaded cat picture with response code \(res.statusCode)")
-                        if let imageData = data {
-                            // Finally convert that Data into an image and do what you wish with it.
-                            let image = UIImage(data: imageData)
-                            let imageView = UIImageView(image: image!)
-                            imageView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
-                            imageView.center = CGPoint(x: 80, y: yDist+90)
-                            self.view.addSubview(imageView)
-                            // Do something with your image.
-                        } else {
-                            print("Couldn't get image: Image is nil")
+        DispatchQueue.main.async {
+            let task = URLSession.shared.dataTask(with: URL(string: link)!) { (data, response, error) in
+                if let content = data {
+                    do {
+                        let fleet = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        Global.fleet = fleet as! [[String : Any]]
+                        
+
+                        var n = 0
+                        while n < Global.fleet.count {
+                            self.ships[Global.fleet[n]["Name"] as? String ?? ""] = Global.fleet[n]["IMO"] as? Int ?? 0
+                            n += 1
                         }
-                    } else {
-                        print("Couldn't get response code for some reason")
+                        
+                        print(self.ships)
+                        DispatchQueue.main.async {
+                            self.tb.reloadData()
+                        }
+                        
+                    }
+                    catch {
+                        print("err")
                     }
                 }
             }
             
-            downloadPicTask.resume()
-            
+            task.resume()
         }
-        */
         
-        // Do any additional setup after loading the view.
+        
+        
+        
+        
+        
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,8 +62,7 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
-    let ships = ["Ship #1", "Ship #2"];
-    let shipsNumbers = ["IMO: 2564110", "IMO: 1452383"];
+    var ships: [String: Int] = [:]//["Ship #1": "2564110", "Ship #2": "1452383"];
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
         Int {
@@ -84,8 +77,8 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
             //            cell.textLabel?.text = equipment[indexPath.row]
             //            cell.imageView?.image = UIImage(named: "waitImage")
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! EquipTableViewCell
-            cell.label1.text = ships[indexPath.row]
-            cell.label2.text = shipsNumbers[indexPath.row]
+            cell.label1.text = Array(ships.keys)[indexPath.row]
+            cell.label2.text = "IMO: " + String(Array(ships.values)[indexPath.row])
             return cell }
     
     var rowselected = Int()
@@ -104,12 +97,6 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet var imageExample: UIView!
     
-    func loadFleet(uid: Int) -> [[String: String]] {
-        // here is parsing !!!
-        let fleet: [[String: String]] = [["image": "https://0.gravatar.com/avatar/673bb041c088d72c449e51515d8a21ad?s=96", "name": "Ship #1", "imo": "9241062"],
-                                         ["image": "https://0.gravatar.com/avatar/673bb041c088d72c449e51515d8a21ad?s=96", "name": "Ship #2", "imo": "6775301"]]
-        return fleet
-    }
     
 
 }
