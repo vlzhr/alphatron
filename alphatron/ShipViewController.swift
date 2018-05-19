@@ -17,6 +17,8 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var b2: UIButton!
     
     var shipNumber = 0
+    let border = CALayer()
+    
     
     @IBAction func button1(_ sender: Any) {
         view1.isHidden = false
@@ -24,6 +26,7 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        let color = b1.backgroundColor as! CGColor
 //        b1.backgroundColor = UIColor(cgColor: b2.backgroundColor as! CGColor)
 //        b2.backgroundColor = UIColor(cgColor: color)
+        b1.layer.addSublayer(border)
     }
     
     @IBAction func button2(_ sender: Any) {
@@ -32,6 +35,7 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        let color = b2.backgroundColor as! CGColor
 //        b2.backgroundColor = UIColor(cgColor: b1.backgroundColor as! CGColor)
 //        b1.backgroundColor = UIColor(cgColor: color)
+        b2.layer.addSublayer(border)
     }
     
     
@@ -73,9 +77,24 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     
+    var toEdit = ["example1": "example2"]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath:
+        IndexPath) {
+        toEdit = [Array(details.keys)[indexPath.row] : Array(details.values)[indexPath.row]]
+        performSegue(withIdentifier: "toEditing", sender: self)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nextView = segue.destination as! EditingViewController
+        nextView.toEdit = toEdit
+    }
     
     override func viewDidLoad() {
+        
+        border.backgroundColor = UIColor(red: 255.0/255.0, green: 155.0/255.0, blue: 155.0/255.0, alpha: 1.0).cgColor
+        border.frame = CGRect(x: b1.frame.minX, y: b1.frame.maxY, width: b1.frame.width, height: 3.1)
+        b1.layer.addSublayer(border)
+        view2.isHidden = true
         
         let ship = Global.fleet[shipNumber]
         title = ship["Name"] as? String ?? ""

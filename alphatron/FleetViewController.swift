@@ -23,6 +23,7 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
                 if let content = data {
                     do {
                         let fleet = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        print(fleet)
                         Global.fleet = fleet as! [[String : Any]]
                         
 
@@ -31,8 +32,8 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
                             self.ships[Global.fleet[n]["Name"] as? String ?? ""] = Global.fleet[n]["IMO"] as? Int ?? 0
                             n += 1
                         }
-                        
                         print(self.ships)
+                        
                         DispatchQueue.main.async {
                             self.tb.reloadData()
                         }
@@ -85,6 +86,8 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath:
         IndexPath) {
         rowselected = indexPath.row
+        print(rowselected)
+        print(Global.fleet[rowselected]["IMO"])
         performSegue(withIdentifier: "toShip", sender: self)
     }
     

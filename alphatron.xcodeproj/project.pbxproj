@@ -16,6 +16,7 @@
 		954A67F22053E912001781EC /* FleetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A67F12053E912001781EC /* FleetViewController.swift */; };
 		95ACCE292080091600BC6977 /* ShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACCE282080091600BC6977 /* ShipViewController.swift */; };
 		95ACCE2D2080188900BC6977 /* EquipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */; };
+		95F6BE2020B0894800F8AFCB /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6BE1F20B0894800F8AFCB /* EditingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		954A67F12053E912001781EC /* FleetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleetViewController.swift; sourceTree = "<group>"; };
 		95ACCE282080091600BC6977 /* ShipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShipViewController.swift; sourceTree = "<group>"; };
 		95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquipTableViewCell.swift; sourceTree = "<group>"; };
+		95F6BE1F20B0894800F8AFCB /* EditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				950BB2CD20A9ECC800D5536F /* AuthViewController.swift */,
 				954A67F12053E912001781EC /* FleetViewController.swift */,
 				95ACCE282080091600BC6977 /* ShipViewController.swift */,
+				95F6BE1F20B0894800F8AFCB /* EditingViewController.swift */,
 				95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */,
 				954A67E62053E54F001781EC /* Assets.xcassets */,
 				954A67E82053E54F001781EC /* LaunchScreen.storyboard */,
@@ -151,6 +154,7 @@
 				954A67E22053E54F001781EC /* ViewController.swift in Sources */,
 				954A67F22053E912001781EC /* FleetViewController.swift in Sources */,
 				95ACCE2D2080188900BC6977 /* EquipTableViewCell.swift in Sources */,
+				95F6BE2020B0894800F8AFCB /* EditingViewController.swift in Sources */,
 				95ACCE292080091600BC6977 /* ShipViewController.swift in Sources */,
 				950BB2CE20A9ECC800D5536F /* AuthViewController.swift in Sources */,
 				954A67E02053E54F001781EC /* AppDelegate.swift in Sources */,
