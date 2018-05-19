@@ -14,7 +14,34 @@ struct Global {
     static var token = "e0be339948dd9d1a071ef8d15d5e5eb2d001585c"
     static var companyID = 1
     static var userID = 6
+    static var shipNumber = 0
     static var fleet: [[String: Any]] = []
+    static var changedFleet: [[String: Any]] = []
+    static func valuesFromNL(key: String) -> String {
+        switch (key) {
+            case "Type of vessel":
+                return self.fleet[self.shipNumber]["Type"] as! String
+            case "Call Sign":
+                return self.fleet[self.shipNumber]["CallSign"] as! String
+            case "Gross Tonnage":
+                return String(self.fleet[self.shipNumber]["GrossTonnage"] as? Int ?? 0)
+        default:
+            return "p"
+        }
+    }
+    static func changeFleetWithNL(key: String, value: String) -> Void {
+        switch (key) {
+        case "Type of vessel":
+            self.fleet[self.shipNumber]["Type"] = value
+        case "Call Sign":
+            self.fleet[self.shipNumber]["CallSign"] = value
+        case "Gross Tonnage":
+            self.fleet[self.shipNumber]["GrossTonnage"] = Int(value)
+        default:
+            print("key not found")
+        }
+    }
+    static let toSys: [String: String] = ["Type of vessel": "Type", "Call Sign": "CallSign", "Gross Tonnage": "GrossTonnage"]
 }
 
 class AuthViewController: UIViewController {

@@ -10,18 +10,48 @@ import UIKit
 
 class EditingViewController: UIViewController {
 
-    var toEdit: [String: String] = ["": ""]
+    @IBOutlet weak var view1: UIView!
+    @IBOutlet weak var view2: UIView!
+    var toEdit: [String] = ["", ""]
+    var wasEdited: String? = nil
     
     @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var labelChanged: UILabel!
     @IBOutlet weak var valueField: UITextField!
+    
+    @IBAction func onEdit(_ sender: Any) {
+        let value = valueField.text
+        if value != toEdit[1] {
+            labelChanged.text = value
+            Global.changeFleetWithNL(key: toEdit[0], value: value ?? "")
+            view2.isHidden = false
+        }
+    }
+    @IBAction func onReset(_ sender: Any) {
+        Global.changeFleetWithNL(key: toEdit[0], value: toEdit[1])
+        view2.isHidden = true
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        label1.text = Array(toEdit.keys)[0]
-        valueField.text = Array(toEdit.values)[0]
+        label1.text = toEdit[0]
+        valueField.text = toEdit[1]
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if toEdit[1] == Global.valuesFromNL(key: toEdit[0]) {
+            print("not changed")
+        } else {
+            print(toEdit[1])
+            print(Global.valuesFromNL(key: toEdit[0]))
+            labelChanged.text = Global.valuesFromNL(key: toEdit[0])
+            view2.isHidden = false
+        }
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

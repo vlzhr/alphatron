@@ -77,10 +77,10 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     
-    var toEdit = ["example1": "example2"]
+    var toEdit = ["example1", "example2"]
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath:
         IndexPath) {
-        toEdit = [Array(details.keys)[indexPath.row] : Array(details.values)[indexPath.row]]
+        toEdit = [Array(details.keys)[indexPath.row], Array(details.values)[indexPath.row]]
         performSegue(withIdentifier: "toEditing", sender: self)
     }
     
@@ -96,6 +96,7 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
         b1.layer.addSublayer(border)
         view2.isHidden = true
         
+        Global.shipNumber = shipNumber
         let ship = Global.fleet[shipNumber]
         title = ship["Name"] as? String ?? ""
         equipment = ship["equipment"] as? [String : String] ?? [:]

@@ -25,11 +25,12 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
                         let fleet = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
                         print(fleet)
                         Global.fleet = fleet as! [[String : Any]]
+                        Global.changedFleet = fleet as! [[String : Any]]
                         
 
                         var n = 0
                         while n < Global.fleet.count {
-                            self.ships[Global.fleet[n]["Name"] as? String ?? ""] = Global.fleet[n]["IMO"] as? Int ?? 0
+                            self.ships.append([Global.fleet[n]["Name"] as? String ?? "" : Global.fleet[n]["IMO"] as? Int ?? 0])
                             n += 1
                         }
                         print(self.ships)
@@ -63,7 +64,7 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
-    var ships: [String: Int] = [:]//["Ship #1": "2564110", "Ship #2": "1452383"];
+    var ships: [[String: Int]] = []//["Ship #1": "2564110", "Ship #2": "1452383"];
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
         Int {
@@ -78,22 +79,20 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
             //            cell.textLabel?.text = equipment[indexPath.row]
             //            cell.imageView?.image = UIImage(named: "waitImage")
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! EquipTableViewCell
-            cell.label1.text = Array(ships.keys)[indexPath.row]
-            cell.label2.text = "IMO: " + String(Array(ships.values)[indexPath.row])
+            cell.label1.text = Array(ships[indexPath.row].keys)[0]
+            cell.label2.text = "IMO: " + String(Array(ships[indexPath.row].values)[0])
             return cell }
     
-    var rowselected = Int()
+    var shipSelected = Int()
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath:
         IndexPath) {
-        rowselected = indexPath.row
-        print(rowselected)
-        print(Global.fleet[rowselected]["IMO"])
+        shipSelected = indexPath.row
         performSegue(withIdentifier: "toShip", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextView = segue.destination as! ShipViewController
-        nextView.shipNumber = rowselected
+        nextView.shipNumber = shipSelected
     }
     
     
