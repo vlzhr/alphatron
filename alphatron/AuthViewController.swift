@@ -20,11 +20,11 @@ struct Global {
     static func valuesFromNL(key: String) -> String {
         switch (key) {
             case "Type of vessel":
-                return self.fleet[self.shipNumber]["Type"] as! String
+                return self.changedFleet[self.shipNumber]["Type"] as! String
             case "Call Sign":
-                return self.fleet[self.shipNumber]["CallSign"] as! String
+                return self.changedFleet[self.shipNumber]["CallSign"] as! String
             case "Gross Tonnage":
-                return String(self.fleet[self.shipNumber]["GrossTonnage"] as? Int ?? 0)
+                return String(self.changedFleet[self.shipNumber]["GrossTonnage"] as? Int ?? 0)
         default:
             return "p"
         }
@@ -32,11 +32,11 @@ struct Global {
     static func changeFleetWithNL(key: String, value: String) -> Void {
         switch (key) {
         case "Type of vessel":
-            self.fleet[self.shipNumber]["Type"] = value
+            self.changedFleet[self.shipNumber]["Type"] = value
         case "Call Sign":
-            self.fleet[self.shipNumber]["CallSign"] = value
+            self.changedFleet[self.shipNumber]["CallSign"] = value
         case "Gross Tonnage":
-            self.fleet[self.shipNumber]["GrossTonnage"] = Int(value)
+            self.changedFleet[self.shipNumber]["GrossTonnage"] = Int(value)
         default:
             print("key not found")
         }

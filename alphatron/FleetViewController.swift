@@ -95,7 +95,9 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
         nextView.shipNumber = shipSelected
     }
     
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     @IBOutlet var imageExample: UIView!
     
