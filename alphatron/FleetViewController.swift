@@ -30,7 +30,8 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
 
                         var n = 0
                         while n < Global.fleet.count {
-                            self.ships.append([Global.fleet[n]["Name"] as? String ?? "" : Global.fleet[n]["IMO"] as? Int ?? 0])
+                            let date = (Global.fleet[n]["AnnualCheckDate"] as? String ?? "T").components(separatedBy: "T")[0]
+                            self.ships.append([Global.fleet[n]["Name"] as? String ?? "" : date])
                             n += 1
                         }
                         print(self.ships)
@@ -49,12 +50,6 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
             task.resume()
         }
         
-        
-        
-        
-        
-        
-        
 
     }
 
@@ -64,7 +59,7 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
-    var ships: [[String: Int]] = []//["Ship #1": "2564110", "Ship #2": "1452383"];
+    var ships: [[String: String]] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
         Int {
@@ -75,12 +70,10 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
         UITableViewCell {
             let cellIdentifier = "TableCell"
-            //            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-            //            cell.textLabel?.text = equipment[indexPath.row]
-            //            cell.imageView?.image = UIImage(named: "waitImage")
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! EquipTableViewCell
             cell.label1.text = Array(ships[indexPath.row].keys)[0]
-            cell.label2.text = "IMO: " + String(Array(ships[indexPath.row].values)[0])
+            cell.label2.text = "Check on " + Array(ships[indexPath.row].values)[0]
+            //cell.label2.text = "IMO: " + String(Array(ships[indexPath.row].values)[0])
             return cell }
     
     var shipSelected = Int()

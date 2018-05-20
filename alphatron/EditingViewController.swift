@@ -28,7 +28,9 @@ class EditingViewController: UIViewController {
         }
     }
     @IBAction func onReset(_ sender: Any) {
+        print(Global.valuesFromNL(key: toEdit[0]))
         Global.changeFleetWithNL(key: toEdit[0], value: toEdit[1])
+        print(Global.valuesFromNL(key: toEdit[0]))
         view2.isHidden = true
     }
     

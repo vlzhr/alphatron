@@ -26,7 +26,7 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        let color = b1.backgroundColor as! CGColor
 //        b1.backgroundColor = UIColor(cgColor: b2.backgroundColor as! CGColor)
 //        b2.backgroundColor = UIColor(cgColor: color)
-        b1.layer.addSublayer(border)
+        b2.layer.addSublayer(border)
     }
     
     @IBAction func button2(_ sender: Any) {
@@ -35,9 +35,13 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        let color = b2.backgroundColor as! CGColor
 //        b2.backgroundColor = UIColor(cgColor: b1.backgroundColor as! CGColor)
 //        b1.backgroundColor = UIColor(cgColor: color)
-        b2.layer.addSublayer(border)
+        b1.layer.addSublayer(border)
     }
     
+    @IBAction func onGlobalReset(_ sender: Any) {
+        Global.changedFleet = Global.fleet
+        self.tabview1.reloadData()
+    }
     
     var data: [Int: [String: [String: String]]] = [
         0: ["equipment": ["Gyro #1": "Tokyo Keiki", "Gyro #2": "Tokyo Keiki", "BNWAS": "Furumo"],
@@ -47,14 +51,17 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
     ]
     
     
-    var equipment: [String: String] = [:]
+    var equipment: [[String: Any]] = []
     
     var details: [String: String] = [:]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
         Int {
             // Return the number of rows in the section.
-            if (tableView == view2) { return equipment.count }
+            if (tableView == view2) {
+                print(equipment.count)
+                return equipment.count
+            }
             else { return details.count }
     }
     
@@ -64,46 +71,71 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if (tableView == view2) {
                 let cellIdentifier = "cell"
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! EquipTableViewCell
-                cell.label1.text = Array(equipment.keys)[indexPath.row]
-                cell.label2.text = Array(equipment.values)[indexPath.row]
+                cell.label1.text = equipment[indexPath.row]["Name"] as? String ?? String(describing: equipment[indexPath.row]["Name"])
+                print(equipment[indexPath.row]["Name"])
+                cell.label2.text = String(equipment[indexPath.row]["SerialNumber"] as? Int ?? 0)
                 return cell
             }
             else {
                 let cellIdentifier = "cell"
-                let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! EquipTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ShipDetailTableViewCell
                 cell.label1.text = Array(details.keys)[indexPath.row]
-                cell.label2.text = Array(details.values)[indexPath.row]
+                if Array(details.values)[indexPath.row] == Global.valuesFromNL(key: Array(details.keys)[indexPath.row]) {
+                    cell.label2.text = Array(details.values)[indexPath.row]
+                    cell.label3.text = ""
+                } else {
+                    cell.label3.text = Global.valuesFromNL(key: Array(details.keys)[indexPath.row])
+                    cell.label2.text = ""
+                }
                 return cell
             }
         }
     
     var toEdit = ["example1", "example2"]
+    var equipIndex = 0
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath:
         IndexPath) {
-        toEdit = [Array(details.keys)[indexPath.row], Array(details.values)[indexPath.row]]
-        performSegue(withIdentifier: "toEditing", sender: self)
+        if tableView == view2 {
+            equipIndex = indexPath.row
+            performSegue(withIdentifier: "toEquipDetails", sender: self)
+        } else {
+            toEdit = [Array(details.keys)[indexPath.row], Array(details.values)[indexPath.row]]
+            performSegue(withIdentifier: "toEditing", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextView = segue.destination as! EditingViewController
-        nextView.toEdit = toEdit
+        if segue.identifier == "toEditing" {
+            let nextView = segue.destination as! EditingViewController
+            nextView.toEdit = toEdit
+        } else {
+            let nextView = segue.destination as! EquipDetailsViewController
+            nextView.equipIndex = equipIndex
+        }
     }
     
     override func viewDidLoad() {
         
         border.backgroundColor = UIColor(red: 255.0/255.0, green: 155.0/255.0, blue: 155.0/255.0, alpha: 1.0).cgColor
         border.frame = CGRect(x: b1.frame.minX, y: b1.frame.maxY, width: b1.frame.width, height: 3.1)
-        b1.layer.addSublayer(border)
+        b2.layer.addSublayer(border)
         view2.isHidden = true
         
         Global.shipNumber = shipNumber
         let ship = Global.fleet[shipNumber]
         title = ship["Name"] as? String ?? ""
-        equipment = ship["equipment"] as? [String : String] ?? [:]
-        details = ["Type of vessel": ship["Type"] as? String ?? "", "Call Sign": ship["CallSign"] as? String ?? "", "Gross Tonnage": String(ship["GrossTonnage"] as? Int ?? 0)]
+        equipment = ship["Equipment"] as? [[String : Any]] ?? []
+        print(equipment)
+        details = ["Type of vessel": ship["Type"] as! String, "Call Sign": ship["CallSign"] as! String, "Gross Tonnage": String(ship["GrossTonnage"] as? Int ?? 0), "Class": ship["Class"] as! String, "IMO": String(ship["IMO"] as? Int ?? 0), "MMSI": ship["MMSI"] as! String]
         
         super.viewDidLoad()
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.tabview1.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

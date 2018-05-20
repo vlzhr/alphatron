@@ -25,6 +25,12 @@ struct Global {
                 return self.changedFleet[self.shipNumber]["CallSign"] as! String
             case "Gross Tonnage":
                 return String(self.changedFleet[self.shipNumber]["GrossTonnage"] as? Int ?? 0)
+            case "IMO":
+                return String(self.changedFleet[self.shipNumber]["IMO"] as? Int ?? 0)
+            case "MMSI":
+                return self.changedFleet[self.shipNumber]["MMSI"] as! String
+            case "Class":
+                return self.changedFleet[self.shipNumber]["Class"] as! String
         default:
             return "p"
         }
@@ -37,6 +43,12 @@ struct Global {
             self.changedFleet[self.shipNumber]["CallSign"] = value
         case "Gross Tonnage":
             self.changedFleet[self.shipNumber]["GrossTonnage"] = Int(value)
+        case "IMO":
+            self.changedFleet[self.shipNumber]["IMO"] = Int(value)
+        case "MMSI":
+            self.changedFleet[self.shipNumber]["MMSI"] = value
+        case "Class":
+            self.changedFleet[self.shipNumber]["Class"] = value
         default:
             print("key not found")
         }
