@@ -15,8 +15,10 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tabview1: UITableView!
     @IBOutlet weak var b1: UIButton!
     @IBOutlet weak var b2: UIButton!
+    @IBOutlet weak var view3: UIView!
     
     var shipNumber = 0
+    var hasChanged = false
     let border = CALayer()
     
     
@@ -39,8 +41,24 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func onGlobalReset(_ sender: Any) {
-        Global.changedFleet = Global.fleet
+        Global.changedFleet[shipNumber] = Global.fleet[shipNumber]
+        view3.isHidden = true
+        hasChanged = false
         self.tabview1.reloadData()
+    }
+    
+    @IBAction func onSave(_ sender: Any) {
+        let alert = UIAlertController(title: "Request sent", message: "Thanks for sending a request. The data will be changed after approving.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+            case .cancel:
+                print("cancel")
+            case .destructive:
+                print("destructive")
+            }}))
+        self.present(alert, animated: true, completion: nil)
     }
     
     var data: [Int: [String: [String: String]]] = [
@@ -86,6 +104,8 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 } else {
                     cell.label3.text = Global.valuesFromNL(key: Array(details.keys)[indexPath.row])
                     cell.label2.text = ""
+                    hasChanged = true
+                    view3.isHidden = false
                 }
                 return cell
             }
@@ -136,6 +156,12 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidAppear(animated)
 
         self.tabview1.reloadData()
+        
+        if hasChanged {
+            view3.isHidden = false
+        } else {
+            view3.isHidden = true
+        }
     }
 
     override func didReceiveMemoryWarning() {

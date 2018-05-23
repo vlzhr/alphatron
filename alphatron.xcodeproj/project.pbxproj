@@ -10,6 +10,9 @@
 		950ABA4D20B0B17A0007E50F /* ShipDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950ABA4C20B0B17A0007E50F /* ShipDetailTableViewCell.swift */; };
 		950BB2CE20A9ECC800D5536F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BB2CD20A9ECC800D5536F /* AuthViewController.swift */; };
 		951D20E820B1C4BF00763178 /* EquipDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D20E720B1C4BF00763178 /* EquipDetailsViewController.swift */; };
+		951D20EB20B1D6CC00763178 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 951D20EA20B1D6CC00763178 /* MapKit.framework */; };
+		951D20ED20B51ECF00763178 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D20EC20B51ECF00763178 /* ProductsViewController.swift */; };
+		951D20EF20B5213100763178 /* ProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D20EE20B5213100763178 /* ProductsTableViewCell.swift */; };
 		954A67E02053E54F001781EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A67DF2053E54F001781EC /* AppDelegate.swift */; };
 		954A67E22053E54F001781EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A67E12053E54F001781EC /* ViewController.swift */; };
 		954A67E52053E54F001781EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954A67E32053E54F001781EC /* Main.storyboard */; };
@@ -25,6 +28,9 @@
 		950ABA4C20B0B17A0007E50F /* ShipDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShipDetailTableViewCell.swift; sourceTree = "<group>"; };
 		950BB2CD20A9ECC800D5536F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		951D20E720B1C4BF00763178 /* EquipDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquipDetailsViewController.swift; sourceTree = "<group>"; };
+		951D20EA20B1D6CC00763178 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		951D20EC20B51ECF00763178 /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
+		951D20EE20B5213100763178 /* ProductsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsTableViewCell.swift; sourceTree = "<group>"; };
 		954A67DC2053E54F001781EC /* alphatron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = alphatron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		954A67DF2053E54F001781EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		954A67E12053E54F001781EC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,17 +49,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				951D20EB20B1D6CC00763178 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		951D20E920B1D6CC00763178 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				951D20EA20B1D6CC00763178 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		954A67D32053E54F001781EC = {
 			isa = PBXGroup;
 			children = (
 				954A67DE2053E54F001781EC /* alphatron */,
 				954A67DD2053E54F001781EC /* Products */,
+				951D20E920B1D6CC00763178 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +87,7 @@
 				954A67DF2053E54F001781EC /* AppDelegate.swift */,
 				954A67E12053E54F001781EC /* ViewController.swift */,
 				954A67E32053E54F001781EC /* Main.storyboard */,
+				951D20EC20B51ECF00763178 /* ProductsViewController.swift */,
 				950BB2CD20A9ECC800D5536F /* AuthViewController.swift */,
 				954A67F12053E912001781EC /* FleetViewController.swift */,
 				95ACCE282080091600BC6977 /* ShipViewController.swift */,
@@ -78,6 +95,7 @@
 				951D20E720B1C4BF00763178 /* EquipDetailsViewController.swift */,
 				95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */,
 				950ABA4C20B0B17A0007E50F /* ShipDetailTableViewCell.swift */,
+				951D20EE20B5213100763178 /* ProductsTableViewCell.swift */,
 				954A67E62053E54F001781EC /* Assets.xcassets */,
 				954A67E82053E54F001781EC /* LaunchScreen.storyboard */,
 				954A67EB2053E54F001781EC /* Info.plist */,
@@ -118,6 +136,11 @@
 					954A67DB2053E54F001781EC = {
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -161,9 +184,11 @@
 				954A67F22053E912001781EC /* FleetViewController.swift in Sources */,
 				951D20E820B1C4BF00763178 /* EquipDetailsViewController.swift in Sources */,
 				950ABA4D20B0B17A0007E50F /* ShipDetailTableViewCell.swift in Sources */,
+				951D20ED20B51ECF00763178 /* ProductsViewController.swift in Sources */,
 				95ACCE2D2080188900BC6977 /* EquipTableViewCell.swift in Sources */,
 				95F6BE2020B0894800F8AFCB /* EditingViewController.swift in Sources */,
 				95ACCE292080091600BC6977 /* ShipViewController.swift in Sources */,
+				951D20EF20B5213100763178 /* ProductsTableViewCell.swift in Sources */,
 				950BB2CE20A9ECC800D5536F /* AuthViewController.swift in Sources */,
 				954A67E02053E54F001781EC /* AppDelegate.swift in Sources */,
 			);
