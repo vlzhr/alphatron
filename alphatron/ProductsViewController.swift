@@ -10,13 +10,62 @@ import UIKit
 
 class ProductsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var products = [["RMD 541-23", "Radar"], ["A2000", "Professional standart realibility"]]
+    var products = [["ProductBulletFact":["fact one", "fact two"],"ID":1,"Picture":"","Name":"RMD 541-43","ShortDescription":"Radar","FullDescription":"this is description"], ["ProductBulletFact":[],"ID":2,"Picture":"","Name":"A2000","ShortDescription":"Professional standart realibility","FullDescription":"this is description"]]
+    
     var imageExamples = [#imageLiteral(resourceName: "product1"), #imageLiteral(resourceName: "product2")]
+    
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL) {
+        print("Download Started")
+        getDataFromUrl(url: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() {
+                //self.imageView.image = UIImage(data: data)
+            }
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("alright 0")
+        let link = Global.apiLink + "Products"
+        
+        DispatchQueue.main.async {
+            let task = URLSession.shared.dataTask(with: URL(string: link)!) { (data, response, error) in
+                if let content = data {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        print(link)
+                        print(json)
+                        
+                        //DispatchQueue.main.async {
+                            //self.tb.reloadData()
+                        //}
+                    }
+                    catch {
+                        print("err")
+                    }
+                }
+            }
+            
+            task.resume()
+        }
+        
+        print("Begin of code")
+        if let url = URL(string: "https://www.w3schools.com/w3css/img_lights.jpg") {
+            //imageView.contentMode = .scaleAspectFit
+            downloadImage(url: url)
+        }
+        print("End of code. The image will continue downloading in the background and it will be loaded when it ends.")
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,13 +84,12 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
             print("alright")
             let cellIdentifier = "cell"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProductsTableViewCell
-            cell.label1.text = products[indexPath.row][0]
-            cell.label2.text = products[indexPath.row][1]
+            cell.label1.text = products[indexPath.row]["Name"] as? String ?? ""
+            cell.label2.text = products[indexPath.row]["ShortDescription"] as? String ?? ""
             cell.image1.image = imageExamples[indexPath.row]
             return cell
         }
     
-    var toEdit = ["example1", "example2"]
     var productIndex = 0
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath:
         IndexPath) {
@@ -50,8 +98,8 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //let nextView = segue.destination as! EditingViewController
-        //nextView.toEdit = toEdit
+        let nextView = segue.destination as! ProductViewController
+        nextView.product = products[productIndex]
     }
 }
 

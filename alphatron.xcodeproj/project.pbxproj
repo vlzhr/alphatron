@@ -19,6 +19,8 @@
 		954A67E72053E54F001781EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 954A67E62053E54F001781EC /* Assets.xcassets */; };
 		954A67EA2053E54F001781EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954A67E82053E54F001781EC /* LaunchScreen.storyboard */; };
 		954A67F22053E912001781EC /* FleetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A67F12053E912001781EC /* FleetViewController.swift */; };
+		95622E5120B9953000165B70 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95622E5020B9953000165B70 /* ProductViewController.swift */; };
+		95622E5320B99C4D00165B70 /* ProductBulletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95622E5220B99C4D00165B70 /* ProductBulletTableViewCell.swift */; };
 		95ACCE292080091600BC6977 /* ShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACCE282080091600BC6977 /* ShipViewController.swift */; };
 		95ACCE2D2080188900BC6977 /* EquipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */; };
 		95F6BE2020B0894800F8AFCB /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6BE1F20B0894800F8AFCB /* EditingViewController.swift */; };
@@ -39,6 +41,8 @@
 		954A67E92053E54F001781EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		954A67EB2053E54F001781EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		954A67F12053E912001781EC /* FleetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleetViewController.swift; sourceTree = "<group>"; };
+		95622E5020B9953000165B70 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		95622E5220B99C4D00165B70 /* ProductBulletTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductBulletTableViewCell.swift; sourceTree = "<group>"; };
 		95ACCE282080091600BC6977 /* ShipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShipViewController.swift; sourceTree = "<group>"; };
 		95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquipTableViewCell.swift; sourceTree = "<group>"; };
 		95F6BE1F20B0894800F8AFCB /* EditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 				954A67E12053E54F001781EC /* ViewController.swift */,
 				954A67E32053E54F001781EC /* Main.storyboard */,
 				951D20EC20B51ECF00763178 /* ProductsViewController.swift */,
+				95622E5020B9953000165B70 /* ProductViewController.swift */,
 				950BB2CD20A9ECC800D5536F /* AuthViewController.swift */,
 				954A67F12053E912001781EC /* FleetViewController.swift */,
 				95ACCE282080091600BC6977 /* ShipViewController.swift */,
@@ -96,6 +101,7 @@
 				95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */,
 				950ABA4C20B0B17A0007E50F /* ShipDetailTableViewCell.swift */,
 				951D20EE20B5213100763178 /* ProductsTableViewCell.swift */,
+				95622E5220B99C4D00165B70 /* ProductBulletTableViewCell.swift */,
 				954A67E62053E54F001781EC /* Assets.xcassets */,
 				954A67E82053E54F001781EC /* LaunchScreen.storyboard */,
 				954A67EB2053E54F001781EC /* Info.plist */,
@@ -186,10 +192,12 @@
 				950ABA4D20B0B17A0007E50F /* ShipDetailTableViewCell.swift in Sources */,
 				951D20ED20B51ECF00763178 /* ProductsViewController.swift in Sources */,
 				95ACCE2D2080188900BC6977 /* EquipTableViewCell.swift in Sources */,
+				95622E5120B9953000165B70 /* ProductViewController.swift in Sources */,
 				95F6BE2020B0894800F8AFCB /* EditingViewController.swift in Sources */,
 				95ACCE292080091600BC6977 /* ShipViewController.swift in Sources */,
 				951D20EF20B5213100763178 /* ProductsTableViewCell.swift in Sources */,
 				950BB2CE20A9ECC800D5536F /* AuthViewController.swift in Sources */,
+				95622E5320B99C4D00165B70 /* ProductBulletTableViewCell.swift in Sources */,
 				954A67E02053E54F001781EC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
