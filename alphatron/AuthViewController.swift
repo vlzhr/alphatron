@@ -60,7 +60,6 @@ struct Global {
 class AuthViewController: UIViewController {
     
     func continueToFleet() -> Void {
-        
         self.performSegue(withIdentifier: "toFleet", sender: self)
         
     }
@@ -121,10 +120,6 @@ class AuthViewController: UIViewController {
     
     @IBOutlet weak var login: UITextField!
     @IBOutlet weak var password: UITextField!
-
-    @IBAction func afterLoginField(_ sender: Any) {
-        print("he")
-    }
     
     @IBAction func loginBut(_ sender: Any) {
         onDataInsert()
@@ -142,14 +137,22 @@ class AuthViewController: UIViewController {
         super.viewDidLoad()
         
         
+        //if Global.auth {
+        //    continueToFleet()
+        //} else {
+        //    print("let's login!")
+        //    auth(login: "test@gmail.com", password: "tes2t")
+        //}
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         if Global.auth {
             continueToFleet()
         } else {
             print("let's login!")
-            //auth(login: "test@gmail.com", password: "tes2t")
+            auth(login: "test@gmail.com", password: "test")
         }
     }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

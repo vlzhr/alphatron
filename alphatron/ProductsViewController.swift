@@ -11,6 +11,10 @@ import UIKit
 class ProductsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tb: UITableView!
+    
+    
+    
+    
     var products = [["ProductBulletFact":["fact one", "fact two"],"ID":1,"Picture":"","Name":"RMD 541-43","ShortDescription":"Radar","FullDescription":"this is description"], ["ProductBulletFact":[],"ID":2,"Picture":"","Name":"A2000","ShortDescription":"Professional standart realibility","FullDescription":"this is description"]]
     
     var images: [UIImage] = []

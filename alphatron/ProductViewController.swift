@@ -15,6 +15,10 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var shortDescText: UILabel!
     @IBOutlet weak var bulletTab: UITableView!
     @IBOutlet weak var fullDescText: UITextView!
+    @IBOutlet weak var button1: UIButton!
+    @IBAction func onDownloadManualClick(_ sender: Any) {
+        openManual()
+    }
     var product: [String: Any] = [:]
     
     override func viewDidLoad() {
@@ -25,6 +29,10 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
         fullDescText.text = product["FullDescription"] as? String ?? ""
         image1.image = product["IMG"] as? UIImage ?? #imageLiteral(resourceName: "product1")
         
+        if (product["Manual"] as? String ?? "<null>") != "<null>" {
+            self.button1.isHidden = false
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +40,10 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
+    func openManual() {
+        print(Global.mediaLink + (product["Manual"] as? String ?? ""))
+        UIApplication.shared.openURL(URL(string: Global.mediaLink + (product["Manual"] as? String ?? "")) ?? URL(string: "https://google.com")!)
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
         Int {

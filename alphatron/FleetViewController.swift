@@ -12,6 +12,10 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     @IBOutlet weak var tb: UITableView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.setHidesBackButton(true, animated: true)
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
