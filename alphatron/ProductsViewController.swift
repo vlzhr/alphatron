@@ -10,9 +10,11 @@ import UIKit
 
 class ProductsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tb: UITableView!
     var products = [["ProductBulletFact":["fact one", "fact two"],"ID":1,"Picture":"","Name":"RMD 541-43","ShortDescription":"Radar","FullDescription":"this is description"], ["ProductBulletFact":[],"ID":2,"Picture":"","Name":"A2000","ShortDescription":"Professional standart realibility","FullDescription":"this is description"]]
     
-    var imageExamples = [#imageLiteral(resourceName: "product1"), #imageLiteral(resourceName: "product2")]
+    var images: [UIImage] = []
+    var imageExamples: [UIImage] = [#imageLiteral(resourceName: "product1"), #imageLiteral(resourceName: "product2")]
     
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -22,11 +24,15 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func downloadImage(url: URL) {
         print("Download Started")
+        print(url)
         getDataFromUrl(url: url) { data, response, error in
             guard let data = data, error == nil else { return }
             print(response?.suggestedFilename ?? url.lastPathComponent)
             print("Download Finished")
             DispatchQueue.main.async() {
+                self.products[self.images.count]["IMG"] = UIImage(data: data)!
+                self.images.append(UIImage(data: data)!)
+                self.tb.reloadData()
                 //self.imageView.image = UIImage(data: data)
             }
         }
@@ -46,9 +52,14 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
                         print(link)
                         print(json)
                         
-                        //DispatchQueue.main.async {
-                            //self.tb.reloadData()
-                        //}
+                        self.products = json as? [[String: Any]] ?? []
+                        for product in self.products {
+                            self.downloadImage(url: URL(string: Global.mediaLink + (product["Picture"] as? String ?? "https://www.w3schools.com/w3css/img_lights.jpg"))!)
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.tb.reloadData()
+                        }
                     }
                     catch {
                         print("err")
@@ -59,12 +70,11 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
             task.resume()
         }
         
-        print("Begin of code")
-        if let url = URL(string: "https://www.w3schools.com/w3css/img_lights.jpg") {
-            //imageView.contentMode = .scaleAspectFit
-            downloadImage(url: url)
-        }
-        print("End of code. The image will continue downloading in the background and it will be loaded when it ends.")
+        //print("Begin of code")
+        //if let url = URL(string: "https://www.w3schools.com/w3css/img_lights.jpg") {
+            //downloadImage(url: url)
+        //}
+        //print("End of code. The image will continue downloading in the background and it will be loaded when it ends.")
 
     }
 
@@ -86,7 +96,12 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProductsTableViewCell
             cell.label1.text = products[indexPath.row]["Name"] as? String ?? ""
             cell.label2.text = products[indexPath.row]["ShortDescription"] as? String ?? ""
-            cell.image1.image = imageExamples[indexPath.row]
+            if images.count > indexPath.row {
+                cell.image1.image = images[indexPath.row]
+            } else {
+                cell.image1.image = imageExamples[0]
+            }
+            
             return cell
         }
     

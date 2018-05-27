@@ -23,6 +23,7 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
         titleLabel.text = product["Name"] as? String ?? ""
         shortDescText.text = product["ShortDescription"] as? String ?? ""
         fullDescText.text = product["FullDescription"] as? String ?? ""
+        image1.image = product["IMG"] as? UIImage ?? #imageLiteral(resourceName: "product1")
         
     }
 

@@ -10,6 +10,7 @@ import UIKit
 
 struct Global {
     static let apiLink = "http://alphatron.schander-dev.art/API/"
+    static let mediaLink = "http://alphatron.schander-dev.art"
     static var auth = true
     static var token = "e0be339948dd9d1a071ef8d15d5e5eb2d001585c"
     static var companyID = 1

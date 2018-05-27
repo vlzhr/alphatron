@@ -50,13 +50,15 @@ class EquipDetailsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     
+    var row = 0
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "to", sender: <#T##Any?#>)
+        row = indexPath.row
+        performSegue(withIdentifier: "toEquipEditing", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextView = segue.destination as! EditingViewController
-        nextView.toEdit = []
+        nextView.toEdit = [charsFirst[row], equip[charsFirst[row]] as? String ?? ""]
     }
 
 
