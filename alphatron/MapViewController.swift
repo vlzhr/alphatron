@@ -13,40 +13,37 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var map1: MKMapView!
     
-    var points:[[String: Any]] = [[:]]
+    var points:[[String: Any]] = []
     
-//    func loadLocations() {
-//        let link = Global.apiLink + "Locations"
-//        DispatchQueue.main.async {
-//            let task = URLSession.shared.dataTask(with: URL(string: link)!) { (data, response, error) in
-//                if let content = data {
-//                    do {
-//                        let json = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-//                        print(json[0])
-//                        
-//                        DispatchQueue.main.async {
-//                            let loc = CLLocation(latitude: Double((json[0] as? [String:Any] ?? [:])["Latitude"] as? String ?? "0")!, longitude: Double((json[0] as? [String:Any] ?? [:])["Longtitude"] as? String ?? "0")!)
-//                            let annotation = MKPointAnnotation()
-//                            annotation.title = "Ilya"
-//                            annotation.subtitle = "Gromov"
-//                            annotation.coordinate = loc.coordinate
-//                            self.map1.showAnnotations([annotation], animated: true)
-//                            self.map1.selectAnnotation(annotation, animated: true)
-//                        }
-//                    }
-//                    catch {
-//                        print("err")
-//                    }
-//                }
-//            }
-//            task.resume()
-//        }
-//    }
+    func loadLocations() {
+        let link = Global.apiLink + "Locations"
+        DispatchQueue.main.async {
+            let task = URLSession.shared.dataTask(with: URL(string: link)!) { (data, response, error) in
+                if let content = data {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        print(link)
+                        print(json[0])
+                        
+                        DispatchQueue.main.async {
+                            self.points = json as? [[String : Any]] ?? []
+                            self.setMap()
+                        }
+                    }
+                    catch {
+                        print("err")
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setMap()
+        //setMap()
+        loadLocations()
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,8 +60,8 @@ class MapViewController: UIViewController {
         
         for point in points {
             let annotation = MKPointAnnotation()
-            annotation.title = "Ilya"
-            annotation.subtitle = "Gromov"
+            annotation.title = point["Name"] as? String ?? ""
+            annotation.subtitle = point["Description"] as? String ?? ""
             annotation.coordinate = CLLocationCoordinate2DMake(50.7677, 37.5802)
             annotations.append(annotation)
             print(point)

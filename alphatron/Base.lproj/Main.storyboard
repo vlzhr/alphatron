@@ -179,9 +179,9 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="7rX-zX-wf3" kind="relationship" relationship="viewControllers" id="m9F-Xc-Kpu"/>
                         <segue destination="mmV-bg-i5w" kind="relationship" relationship="viewControllers" id="OSn-mi-q8S"/>
                         <segue destination="dXc-aQ-lGs" kind="relationship" relationship="viewControllers" id="ehN-vb-Cvp"/>
+                        <segue destination="7rX-zX-wf3" kind="relationship" relationship="viewControllers" id="m9F-Xc-Kpu"/>
                         <segue destination="Ixj-16-KUw" kind="relationship" relationship="viewControllers" id="LQg-vX-mlx"/>
                     </connections>
                 </tabBarController>

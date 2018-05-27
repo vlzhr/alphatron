@@ -11,11 +11,11 @@ import UIKit
 struct Global {
     static let apiLink = "http://alphatron.schander-dev.art/API/"
     static let mediaLink = "http://alphatron.schander-dev.art"
-    static var auth = true
-    static var token = "e0be339948dd9d1a071ef8d15d5e5eb2d001585c"
-    static var companyID = 1
-    static var userID = 6
+    static var auth = false
+    static var token = ""
+    static var userID = 0
     static var shipNumber = 0
+    static var user: [String: Any] = [:]
     static var fleet: [[String: Any]] = []
     static var changedFleet: [[String: Any]] = []
     static func valuesFromNL(key: String) -> String {
@@ -65,51 +65,57 @@ class AuthViewController: UIViewController {
         
     }
     
-//    func auth() {
-//        let passMD5 = "098F6BCD4621D373CADE4E832627B4F6"
-//        let link = Global.apiLink
-//        let task = URLSession.shared.dataTask(with: URL(string: link)!) { (data, response, error) in
-//            
-//            if let content = data {
-//                
-//                do {
-//                    let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-//                }
-//                catch {
-//                    print("err")
-//                }
-//                
-//            }
-//            else {
-//                print("ERROR")
-//            }
-//            
-//        }
-////    }
+    func auth(login: String, password: String) {
+        let link = Global.apiLink + "APIAuth?email=" + login + "&password=" + MD5(string: password)
+        print(link)
+        let task = URLSession.shared.dataTask(with: URL(string: link)!) { (data, response, error) in
+            if let content = data {
+                do {
+                    let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                    print(myJson)
+                    Global.user = myJson as? [String : Any] ?? [:]
+                    Global.token = myJson["Token"] as? String ?? "error"
+                    Global.userID = (myJson["User"] as? [String: Any] ?? [:])["ID"] as? Int ?? 1
+                    Global.auth = true
+                    
+                    DispatchQueue.main.async {
+                        self.continueToFleet()
+                    }
+                }
+                catch {
+                    self.showDataError()
+                }
+            }
+            else {
+                print("ERROR")
+            }
+        }
+        task.resume()
+    }
+    
+    func showDataError() {
+        let alert = UIAlertController(title: "Data incorrect!", message: "Ooops.. Check the data you have inserted. Here goes a mistake.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+                
+                
+            }}))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
     
     func onDataInsert() {
-        if (login.text == "test@gmail.com") && (password.text == "test") {
-            Global.auth = true
-            continueToFleet()
-        }
-        else {
-            let alert = UIAlertController(title: "Data incorrect!", message: "Ooops.. Check the data you have inserted. Here goes a mistake.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                switch action.style{
-                case .default:
-                    print("default")
-                    
-                case .cancel:
-                    print("cancel")
-                    
-                case .destructive:
-                    print("destructive")
-                    
-                    
-                }}))
-            self.present(alert, animated: true, completion: nil)
-        }
+        auth(login: login.text ?? "", password: password.text ?? "")
     }
     
     
@@ -135,8 +141,12 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         if Global.auth {
             continueToFleet()
+        } else {
+            print("let's login!")
+            //auth(login: "test@gmail.com", password: "tes2t")
         }
     }
 
@@ -146,15 +156,17 @@ class AuthViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func MD5(string: String) -> String {
+        let messageData = string.data(using:.utf8)!
+        var digestData = Data(count: Int(CC_MD5_DIGEST_LENGTH))
+        
+        _ = digestData.withUnsafeMutableBytes {digestBytes in
+            messageData.withUnsafeBytes {messageBytes in
+                CC_MD5(messageBytes, CC_LONG(messageData.count), digestBytes)
+            }
+        }
+        
+        return digestData.map { String(format: "%02hhx", $0) }.joined()
     }
-    */
 
 }
