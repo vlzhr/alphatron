@@ -8,11 +8,10 @@
 
 import UIKit
 
-class ProductsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProductsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
 
     @IBOutlet weak var tb: UITableView!
-    
-    
+    var searchController:UISearchController!
     
     
     var products = [["ProductBulletFact":["fact one", "fact two"],"ID":1,"Picture":"","Name":"RMD 541-43","ShortDescription":"Radar","FullDescription":"this is description"], ["ProductBulletFact":[],"ID":2,"Picture":"","Name":"A2000","ShortDescription":"Professional standart realibility","FullDescription":"this is description"]]
@@ -26,7 +25,7 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
             }.resume()
     }
     
-    func downloadImage(url: URL) {
+    func downloadImage(url: URL, count: Int) {
         print("Download Started")
         print(url)
         getDataFromUrl(url: url) { data, response, error in
@@ -34,7 +33,7 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
             print(response?.suggestedFilename ?? url.lastPathComponent)
             print("Download Finished")
             DispatchQueue.main.async() {
-                self.products[self.images.count]["IMG"] = UIImage(data: data)!
+                self.products[count]["IMG"] = UIImage(data: data)!
                 self.images.append(UIImage(data: data)!)
                 self.tb.reloadData()
                 //self.imageView.image = UIImage(data: data)
@@ -42,10 +41,35 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    var searchResults: [[String: Any]] = []
+    func filterContent(for searchText: String) {
+        searchResults = products.filter({ (product) -> Bool in
+            var s = product["FullDescription"] as? String ?? ""
+            s += product["ShortDescription"] as? String ?? ""
+            s += product["Name"] as? String ?? ""
+            let isMatch = s.localizedCaseInsensitiveContains(searchText)
+            return isMatch
+        })
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContent(for: searchText)
+            print("FILTERED")
+            tb.reloadData()
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        searchController = UISearchController(searchResultsController: nil)
+        tb.tableHeaderView = searchController.searchBar
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        
         let link = Global.apiLink + "Products"
         
         DispatchQueue.main.async {
@@ -58,7 +82,10 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
                         
                         self.products = json as? [[String: Any]] ?? []
                         for product in self.products {
-                            self.downloadImage(url: URL(string: Global.mediaLink + (product["Picture"] as? String ?? "https://www.w3schools.com/w3css/img_lights.jpg"))!)
+                            let count = self.products.index(where: { (item) -> Bool in
+                                (item["ID"] as? Int ?? 0) == (product["ID"] as? Int ?? 0)
+                            })
+                            self.downloadImage(url: URL(string: Global.mediaLink + (product["Picture"] as? String ?? "https://www.w3schools.com/w3css/img_lights.jpg"))!, count: count!)
                         }
                         
                         DispatchQueue.main.async {
@@ -89,7 +116,11 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
         Int {
-            return products.count
+            if searchController.isActive {
+                return searchResults.count
+            } else {
+                return products.count
+            }
     }
     
     
@@ -98,10 +129,12 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
             print("alright")
             let cellIdentifier = "cell"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProductsTableViewCell
-            cell.label1.text = products[indexPath.row]["Name"] as? String ?? ""
-            cell.label2.text = products[indexPath.row]["ShortDescription"] as? String ?? ""
+            let product = (searchController.isActive) ? searchResults[indexPath.row]
+                : products[indexPath.row]
+            cell.label1.text = product["Name"] as? String ?? ""
+            cell.label2.text = product["ShortDescription"] as? String ?? ""
             if images.count > indexPath.row {
-                cell.image1.image = images[indexPath.row]
+                cell.image1.image = product["IMG"] as? UIImage ?? #imageLiteral(resourceName: "product1")
             } else {
                 cell.image1.image = imageExamples[0]
             }
@@ -118,7 +151,11 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextView = segue.destination as! ProductViewController
-        nextView.product = products[productIndex]
+        if searchController.isActive {
+            nextView.product = searchResults[productIndex]
+        } else {
+            nextView.product = products[productIndex]
+        }
     }
 }
 

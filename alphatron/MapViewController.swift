@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var map1: MKMapView!
     
@@ -39,8 +39,49 @@ class MapViewController: UIViewController {
         }
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) ->
+        MKAnnotationView? {
+            let identifier = "MyPin"
+            if annotation.isKind(of: MKUserLocation.self) {
+                return nil
+            }
+            // Reuse the annotation if possible
+            var annotationView:MKPinAnnotationView? =
+                mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as?
+            MKPinAnnotationView
+            if annotationView == nil {
+                annotationView = MKPinAnnotationView(annotation: annotation,
+                                                     reuseIdentifier: identifier)
+                annotationView?.canShowCallout = true
+            }
+            
+            let leftView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))
+            leftView.image = #imageLiteral(resourceName: "icons8-company-50")
+
+            let rightView = UIView(frame: CGRect.init(x: 0, y: 0, width: 71, height: 20))
+            let emailLabel = UILabel(frame: CGRect.init(x: 0, y: 0, width: 70, height: 11))
+            let phoneLabel = UILabel(frame: CGRect.init(x: 0, y: 11, width: 70, height: 9))
+            emailLabel.textAlignment = .right
+            emailLabel.font = emailLabel.font.withSize(11)
+            emailLabel.adjustsFontSizeToFitWidth = true
+            phoneLabel.textAlignment = .right
+            phoneLabel.font = phoneLabel.font.withSize(9)
+            phoneLabel.adjustsFontSizeToFitWidth = true
+            //phoneLabel.textColor
+            rightView.addSubview(emailLabel)
+            rightView.addSubview(phoneLabel)
+            emailLabel.text = "187@bk.ru"
+            phoneLabel.text = "+49998761234"
+            annotationView?.rightCalloutAccessoryView = rightView
+            annotationView?.leftCalloutAccessoryView = leftView
+            
+
+            return annotationView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        map1.delegate = self
         
         //setMap()
         loadLocations()
@@ -54,21 +95,21 @@ class MapViewController: UIViewController {
     func setMap() {
         var annotations:[MKAnnotation] = []
         
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(40, 40)
-        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(50.7677, 37.5802)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-        
         for point in points {
             let annotation = MKPointAnnotation()
             annotation.title = point["Name"] as? String ?? ""
-            annotation.subtitle = point["Description"] as? String ?? ""
-            annotation.coordinate = CLLocationCoordinate2DMake(50.7677, 37.5802)
+            annotation.subtitle = (point["Description"] as? String ?? "") + "\nheyyy"
+            print(Double(point["Latitude"] as? String ?? "0")!, Double(point["Longtitude"] as? String ?? "0")!)
+            annotation.coordinate = CLLocationCoordinate2DMake(Double(point["Latitude"] as? String ?? "0")!, Double(point["Longtitude"] as? String ?? "0")!)
             annotations.append(annotation)
-            print(point)
         }
         
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(70, 70)
+        let location:CLLocationCoordinate2D = annotations[0].coordinate
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        
+        map1.setRegion(region, animated: false)
         map1.showAnnotations(annotations, animated: true)
-        map1.setRegion(region, animated: true)
     }
     
 

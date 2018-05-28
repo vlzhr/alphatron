@@ -29,7 +29,7 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
         fullDescText.text = product["FullDescription"] as? String ?? ""
         image1.image = product["IMG"] as? UIImage ?? #imageLiteral(resourceName: "product1")
         
-        if (product["Manual"] as? String ?? "<null>") != "<null>" {
+        if (product["Manual"] as? String ?? "<null>") != "<null>" && Global.auth {
             self.button1.isHidden = false
         }
         
@@ -42,12 +42,12 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func openManual() {
         print(Global.mediaLink + (product["Manual"] as? String ?? ""))
-        UIApplication.shared.openURL(URL(string: Global.mediaLink + (product["Manual"] as? String ?? "")) ?? URL(string: "https://google.com")!)
+        UIApplication.shared.open(URL(string: Global.mediaLink + (product["Manual"] as? String ?? "")) ?? URL(string: "https://google.com")!, options: [:], completionHandler: nil)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
         Int {
-            return (product["ProductBulletFact"] as? [String] ?? []).count
+            return (product["ProductBulletFact"] as? [[String: Any]] ?? []).count
     }
     
     
@@ -55,7 +55,7 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
         UITableViewCell {
         let cellIdentifier = "cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProductBulletTableViewCell
-        cell.label1.text = (product["ProductBulletFact"] as? [String] ?? [])[indexPath.row]
+        cell.label1.text = (product["ProductBulletFact"] as? [[String: Any]] ?? [])[indexPath.row]["Fact"] as? String ?? ""
         return cell
     }
 

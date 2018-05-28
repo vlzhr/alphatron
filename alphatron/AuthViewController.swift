@@ -72,7 +72,7 @@ class AuthViewController: UIViewController {
                 do {
                     let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
                     print(myJson)
-                    Global.user = myJson as? [String : Any] ?? [:]
+                    Global.user = myJson["User"] as? [String : Any] ?? [:]
                     Global.token = myJson["Token"] as? String ?? "error"
                     Global.userID = (myJson["User"] as? [String: Any] ?? [:])["ID"] as? Int ?? 1
                     Global.auth = true

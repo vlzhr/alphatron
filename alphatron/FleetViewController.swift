@@ -21,6 +21,7 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         
         let link = Global.apiLink + "UsersVessels?user_id=" + String(Global.userID) + "&id=" + String(Global.userID) + "&token=" + Global.token
+        print(link)
         
         DispatchQueue.main.async {
             let task = URLSession.shared.dataTask(with: URL(string: link)!) { (data, response, error) in

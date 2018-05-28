@@ -22,6 +22,7 @@
 		95622E5120B9953000165B70 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95622E5020B9953000165B70 /* ProductViewController.swift */; };
 		95622E5320B99C4D00165B70 /* ProductBulletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95622E5220B99C4D00165B70 /* ProductBulletTableViewCell.swift */; };
 		95622E5720B9B5D100165B70 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95622E5620B9B5D100165B70 /* MapViewController.swift */; };
+		95622E5E20BB29A200165B70 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95622E5D20BB29A200165B70 /* ContactViewController.swift */; };
 		95ACCE292080091600BC6977 /* ShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACCE282080091600BC6977 /* ShipViewController.swift */; };
 		95ACCE2D2080188900BC6977 /* EquipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */; };
 		95F6BE2020B0894800F8AFCB /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6BE1F20B0894800F8AFCB /* EditingViewController.swift */; };
@@ -46,6 +47,7 @@
 		95622E5220B99C4D00165B70 /* ProductBulletTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductBulletTableViewCell.swift; sourceTree = "<group>"; };
 		95622E5620B9B5D100165B70 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		95622E5C20BAF3C800165B70 /* Alphatron-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Alphatron-Bridging-Header.h"; sourceTree = "<group>"; };
+		95622E5D20BB29A200165B70 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		95ACCE282080091600BC6977 /* ShipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShipViewController.swift; sourceTree = "<group>"; };
 		95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquipTableViewCell.swift; sourceTree = "<group>"; };
 		95F6BE1F20B0894800F8AFCB /* EditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				95622E5620B9B5D100165B70 /* MapViewController.swift */,
 				951D20EC20B51ECF00763178 /* ProductsViewController.swift */,
 				95622E5020B9953000165B70 /* ProductViewController.swift */,
+				95622E5D20BB29A200165B70 /* ContactViewController.swift */,
 				95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */,
 				950ABA4C20B0B17A0007E50F /* ShipDetailTableViewCell.swift */,
 				951D20EE20B5213100763178 /* ProductsTableViewCell.swift */,
@@ -205,6 +208,7 @@
 				95622E5320B99C4D00165B70 /* ProductBulletTableViewCell.swift in Sources */,
 				954A67E02053E54F001781EC /* AppDelegate.swift in Sources */,
 				95622E5720B9B5D100165B70 /* MapViewController.swift in Sources */,
+				95622E5E20BB29A200165B70 /* ContactViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
