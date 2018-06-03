@@ -47,7 +47,10 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tabview1.reloadData()
     }
     
+    
     @IBAction func onSave(_ sender: Any) {
+        saveData()
+        
         let alert = UIAlertController(title: "Request sent", message: "Thanks for sending a request. The data will be changed after approving.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             switch action.style{
@@ -60,6 +63,74 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }}))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func saveData() {
+        let parameters = Global.changedFleet[shipNumber]//["username": "@kilo_loco", "tweet": "HelloWorld"]
+        let link = Global.apiLink + "EditVessel"//"https://jsonplaceholder.typicode.com/posts"
+        
+        guard let url = URL(string: link) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else { return }
+        request.httpBody = httpBody
+        
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                } catch {
+                    print(error)
+                }
+            }
+            
+            }.resume()
+    }
+    
+    
+    func saveDataL() {
+        let json: [String: Any] = Global.changedFleet[shipNumber]
+        let link = Global.apiLink + "EditVessel"
+        print(link)
+        //let link = "https://gurujsonrpc.appspot.com/guru"
+        //let link = "https://jsonplaceholder.typicode.com/posts"
+        //let json: [String: Any] = [ "method" : "guru.test", "params" : [ "Guru" ], "id" : 123 ]
+        
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+
+        let url = URL(string: link)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: URL(string: link)!) { (data, response, error) in
+            if let content = data {
+                do {
+                    print(String(bytes: content, encoding: .utf8))
+                    let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                    print(myJson)
+                }
+                catch {
+                    print("data error")
+                }
+            }
+            else {
+                print("ERROR")
+            }
+        }
+        task.resume()
+        
+    }
+    
+    
     
     var data: [Int: [String: [String: String]]] = [
         0: ["equipment": ["Gyro #1": "Tokyo Keiki", "Gyro #2": "Tokyo Keiki", "BNWAS": "Furumo"],

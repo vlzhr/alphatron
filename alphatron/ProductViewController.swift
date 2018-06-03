@@ -27,6 +27,7 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
         titleLabel.text = product["Name"] as? String ?? ""
         shortDescText.text = product["ShortDescription"] as? String ?? ""
         fullDescText.text = product["FullDescription"] as? String ?? ""
+        //adjustUITextViewHeight(arg: fullDescText)
         image1.image = product["IMG"] as? UIImage ?? #imageLiteral(resourceName: "product1")
         
         if (product["Manual"] as? String ?? "<null>") != "<null>" && Global.auth {
@@ -38,6 +39,13 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func adjustUITextViewHeight(arg : UITextView)
+    {
+        arg.translatesAutoresizingMaskIntoConstraints = true
+        arg.sizeToFit()
+        arg.isScrollEnabled = false
     }
     
     func openManual() {

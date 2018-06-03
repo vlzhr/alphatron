@@ -40,7 +40,6 @@ class EditingViewController: UIViewController {
 
         label1.text = toEdit[0]
         valueField.text = toEdit[1]
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {

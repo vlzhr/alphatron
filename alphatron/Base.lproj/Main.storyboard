@@ -225,7 +225,7 @@
             <objects>
                 <navigationController id="5Yk-Ad-eA4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Contact" image="contactIcon" id="0i6-7h-nUh"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Wrz-xB-DTX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wrz-xB-DTX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.99923485519999999" green="0.1778973043" blue="0.2096757591" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -258,7 +258,7 @@
                                 <rect key="frame" x="18" y="82" width="341" height="211"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="U have logged as:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1p-AJ-YcT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have logged as:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1p-AJ-YcT">
                                         <rect key="frame" x="9" y="19" width="322" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>

@@ -98,14 +98,10 @@ class AuthViewController: UIViewController {
             switch action.style{
             case .default:
                 print("default")
-                
             case .cancel:
                 print("cancel")
-                
             case .destructive:
                 print("destructive")
-                
-                
             }}))
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
@@ -127,10 +123,9 @@ class AuthViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Global.auth = false
-        //if Global.auth {
-        //    continueToFleet()
-        //}
+        if Global.auth {
+            continueToFleet()
+        }
     }
     
     override func viewDidLoad() {

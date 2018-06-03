@@ -23,7 +23,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     do {
                         let json = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
                         print(link)
-                        print(json[0])
+                        //print(json[0])
                         
                         DispatchQueue.main.async {
                             self.points = json as? [[String : Any]] ?? []

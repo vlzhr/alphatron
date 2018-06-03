@@ -14,7 +14,7 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
     var searchController:UISearchController!
     
     
-    var products = [["ProductBulletFact":["fact one", "fact two"],"ID":1,"Picture":"","Name":"RMD 541-43","ShortDescription":"Radar","FullDescription":"this is description"], ["ProductBulletFact":[],"ID":2,"Picture":"","Name":"A2000","ShortDescription":"Professional standart realibility","FullDescription":"this is description"]]
+    var products = [["ProductBulletFact":["fact one", "fact two"],"ID":1,"Picture":"","Name":"Please wait","ShortDescription":"The real data is loaded","FullDescription":"this is description"]]//, ["ProductBulletFact":[],"ID":2,"Picture":"","Name":"A2000","ShortDescription":"Professional standart realibility","FullDescription":"this is description"]]
     
     var images: [UIImage] = []
     var imageExamples: [UIImage] = [#imageLiteral(resourceName: "product1"), #imageLiteral(resourceName: "product2")]

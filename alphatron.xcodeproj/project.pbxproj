@@ -338,7 +338,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ANN.alphatron;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = Frameworks;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Anna/Desktop/Vladimir/XCODE/alphatron new x2/alphatron/Alphatron-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "alphatron/Alphatron-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -352,7 +352,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ANN.alphatron;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = Frameworks;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Anna/Desktop/Vladimir/XCODE/alphatron new x2/alphatron/Alphatron-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "alphatron/Alphatron-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
