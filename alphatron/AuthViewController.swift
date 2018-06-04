@@ -145,7 +145,7 @@ class AuthViewController: UIViewController {
             continueToFleet()
         } else {
             print("let's login!")
-            auth(login: "test@gmail.com", password: "test")
+            //auth(login: "test@gmail.com", password: "test")
         }
     }
     
