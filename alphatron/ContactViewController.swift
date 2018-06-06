@@ -26,6 +26,12 @@ class ContactViewController: UIViewController {
         UIApplication.shared.open(number)
     }
     
+    @IBAction func onLogout(_ sender: Any) {
+        Global.auth = false
+        viewDidAppear(true)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -12,13 +12,30 @@ class FleetViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     @IBOutlet weak var tb: UITableView!
     
+    @IBOutlet weak var noAccessWindow: UIView!
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.setHidesBackButton(true, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if (Global.auth == false) {
+            _ = navigationController?.popViewController(animated: true)
+        }
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        if (Global.userRole == 3) {
+            tb.isHidden = true
+            return
+        } else {
+            
+        }
+        
+        tb.isHidden = false
         
         let link = Global.apiLink + "UsersVessels?user_id=" + String(Global.userID) + "&id=" + String(Global.userID) + "&token=" + Global.token
         print(link)

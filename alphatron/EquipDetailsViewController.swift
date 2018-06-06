@@ -12,7 +12,7 @@ class EquipDetailsViewController: UIViewController, UITableViewDataSource, UITab
 
     var equipIndex = 0
     var equip: [String: Any] = [:]
-    var charsFirst: [String] = ["SerialNumber", "AnnualCheckDate", "Name", "Remarks", "Model", "Marker"]
+    var charsFirst: [String] = ["SerialNumber", "AnnualCheckDate", "Remarks", "Name", "Model", "Maker"]
 
     
     override func viewDidLoad() {
@@ -37,6 +37,9 @@ class EquipDetailsViewController: UIViewController, UITableViewDataSource, UITab
         } else if indexPath.row == 1 {
             cell.label1.text = "Check Date"
             cell.label2.text = (equip["CheckDate"] as? String ?? "T").components(separatedBy: "T")[0]
+        } else if indexPath.row == 2 {
+            cell.label1.text = "Remarks"
+            cell.label2.text = (equip["Remarks"] as? String ?? "-")
         } else {
             cell.label1.text = charsFirst[indexPath.row]
             cell.label2.text = equip[charsFirst[indexPath.row]] as? String ?? String(describing: equip[charsFirst[indexPath.row]])

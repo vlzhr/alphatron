@@ -31,7 +31,9 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
         image1.image = product["IMG"] as? UIImage ?? #imageLiteral(resourceName: "product1")
         
         if (product["Manual"] as? String ?? "<null>") != "<null>" && Global.auth {
-            self.button1.isHidden = false
+            if Global.userRole == 3 {
+                self.button1.isHidden = false
+            }
         }
         
     }

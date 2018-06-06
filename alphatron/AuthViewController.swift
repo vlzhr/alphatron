@@ -17,6 +17,7 @@ struct Global {
     static var shipNumber = 0
     static var user: [String: Any] = [:]
     static var fleet: [[String: Any]] = []
+    static var userRole = 0
     static var changedFleet: [[String: Any]] = []
     static func valuesFromNL(key: String) -> String {
         switch (key) {
@@ -74,6 +75,7 @@ class AuthViewController: UIViewController {
                     print(myJson)
                     Global.user = myJson["User"] as? [String : Any] ?? [:]
                     Global.token = myJson["Token"] as? String ?? "error"
+                    Global.userRole = Global.user["RoleID"] as? Int ?? 0
                     Global.userID = (myJson["User"] as? [String: Any] ?? [:])["ID"] as? Int ?? 1
                     Global.auth = true
                     
@@ -125,6 +127,9 @@ class AuthViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if Global.auth {
             continueToFleet()
+        } else {
+            login.text = ""
+            password.text = ""
         }
     }
     
