@@ -156,6 +156,7 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
         IndexPath) {
         if tableView == view2 {
             equipIndex = indexPath.row
+            Global.equipNumber = indexPath.row
             performSegue(withIdentifier: "toEquipDetails", sender: self)
         } else {
             toEdit = [Array(details.keys)[indexPath.row], Array(details.values)[indexPath.row]]

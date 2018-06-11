@@ -12,7 +12,7 @@ class EquipDetailsViewController: UIViewController, UITableViewDataSource, UITab
 
     var equipIndex = 0
     var equip: [String: Any] = [:]
-    var charsFirst: [String] = ["SerialNumber", "AnnualCheckDate", "Remarks", "Name", "Model", "Maker"]
+    var charsFirst: [String] = ["SerialNumber", "CheckDate", "Remarks", "Name", "Model", "Maker"]
 
     
     override func viewDidLoad() {
@@ -61,7 +61,7 @@ class EquipDetailsViewController: UIViewController, UITableViewDataSource, UITab
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextView = segue.destination as! EditingViewController
-        nextView.toEdit = [charsFirst[row], equip[charsFirst[row]] as? String ?? ""]
+        nextView.toEdit = [charsFirst[row], equip[charsFirst[row]] as? String ?? String(equip[charsFirst[row]] as? Int ?? 0)]
     }
 
 

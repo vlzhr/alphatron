@@ -15,6 +15,7 @@ struct Global {
     static var token = ""
     static var userID = 0
     static var shipNumber = 0
+    static var equipNumber = 0
     static var user: [String: Any] = [:]
     static var fleet: [[String: Any]] = []
     static var userRole = 0
@@ -34,7 +35,9 @@ struct Global {
             case "Class":
                 return self.changedFleet[self.shipNumber]["Class"] as! String
         default:
-            return "p"
+            let equipment = self.changedFleet[self.shipNumber]["Equipment"] as! [[String: Any]]
+            return equipment[self.equipNumber][key] as? String ?? String(equipment[self.equipNumber][key] as? Int ?? 0)
+//            return self.changedFleet[self.shipNumber]["Class"] as! String
         }
     }
     static func changeFleetWithNL(key: String, value: String) -> Void {
@@ -52,7 +55,9 @@ struct Global {
         case "Class":
             self.changedFleet[self.shipNumber]["Class"] = value
         default:
-            print("key not found")
+            var equipment = self.changedFleet[self.shipNumber]["Equipment"] as? [[String: Any]] ?? []
+            equipment[self.equipNumber][key] = value
+            self.changedFleet[self.shipNumber]["Equipment"] = equipment
         }
     }
     static let toSys: [String: String] = ["Type of vessel": "Type", "Call Sign": "CallSign", "Gross Tonnage": "GrossTonnage"]
@@ -150,7 +155,7 @@ class AuthViewController: UIViewController {
             continueToFleet()
         } else {
             print("let's login!")
-            //auth(login: "test@gmail.com", password: "test")
+            auth(login: "test@gmail.com", password: "test")
         }
     }
     
