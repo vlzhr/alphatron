@@ -14,14 +14,68 @@ class EquipDetailsViewController: UIViewController, UITableViewDataSource, UITab
     var equip: [String: Any] = [:]
     var charsFirst: [String] = ["SerialNumber", "CheckDate", "Remarks", "Name", "Model", "Maker"]
 
+    func saveData() {
+        let parameters = (Global.changedFleet[Global.shipNumber]["Equipment"] as! [[String: Any]])[Global.equipNumber]
+        let link = Global.apiLink + "EditVessel"
+        
+        guard let url = URL(string: link) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        guard let newObj = try? JSONSerialization.data(withJSONObject: parameters, options: []) else { return }
+        var postString = "user_id=" + String(Global.userID)
+        postString += "&token=" + Global.token + "&newobj=" + (String(data: newObj, encoding: .utf8) as? String ?? "")
+        print(postString)
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            }.resume()
+    }
+    
+    @IBOutlet weak var view3: UIView!
+    
+    @IBAction func onReset(_ sender: Any) {
+        Global.changedFleet[Global.shipNumber]["Equipment"] = Global.fleet[Global.shipNumber]["Equipment"]
+        view3.isHidden = true
+    }
+    @IBAction func onSave(_ sender: Any) {
+        saveData()
+        
+        let alert = UIAlertController(title: "Request sent", message: "Thanks for sending a request. The data will be changed after approving.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+            case .cancel:
+                print("cancel")
+            case .destructive:
+                print("destructive")
+            }}))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         equip = (Global.fleet[Global.shipNumber]["Equipment"] as! [Any])[equipIndex] as? [String: Any] ?? [:]
         title = equip["Name"] as? String ?? "no name"
-
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        view3.isHidden = true
+        let changedEquip = (Global.changedFleet[Global.shipNumber]["Equipment"] as! [Any])[equipIndex] as? [String: Any] ?? [:]
+        for n in Array(equip.keys) {
+            if equip[n] as? String ?? String(equip[n] as? Int ?? 0) != changedEquip[n] as? String ?? String(changedEquip[n] as? Int ?? 0) {
+                self.view3.isHidden = false
+            }
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
         Int {

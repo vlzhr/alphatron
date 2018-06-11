@@ -68,7 +68,6 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let parameters = Global.changedFleet[shipNumber]
         let link = Global.apiLink + "EditVessel"
         
-        
         guard let url = URL(string: link) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -84,18 +83,7 @@ class ShipViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if let response = response {
                 print(response)
             }
-            
-            if let data = data {
-                print(String(data: data, encoding: .utf8))
-//                do {
-//                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-//                    print(json)
-//                } catch {
-//                    print(error)
-//                }
-            }
-            
-            }.resume()
+        }.resume()
     }
     
     
