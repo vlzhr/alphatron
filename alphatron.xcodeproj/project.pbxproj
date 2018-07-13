@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82591B0C20F954E700096093 /* ProductDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82591B0B20F954E700096093 /* ProductDescriptionViewController.swift */; };
 		950ABA4D20B0B17A0007E50F /* ShipDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950ABA4C20B0B17A0007E50F /* ShipDetailTableViewCell.swift */; };
 		950BB2CE20A9ECC800D5536F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BB2CD20A9ECC800D5536F /* AuthViewController.swift */; };
 		951D20E820B1C4BF00763178 /* EquipDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D20E720B1C4BF00763178 /* EquipDetailsViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		82591B0B20F954E700096093 /* ProductDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDescriptionViewController.swift; sourceTree = "<group>"; };
 		950ABA4C20B0B17A0007E50F /* ShipDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShipDetailTableViewCell.swift; sourceTree = "<group>"; };
 		950BB2CD20A9ECC800D5536F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		951D20E720B1C4BF00763178 /* EquipDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquipDetailsViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				95622E5620B9B5D100165B70 /* MapViewController.swift */,
 				951D20EC20B51ECF00763178 /* ProductsViewController.swift */,
 				95622E5020B9953000165B70 /* ProductViewController.swift */,
+				82591B0B20F954E700096093 /* ProductDescriptionViewController.swift */,
 				95622E5D20BB29A200165B70 /* ContactViewController.swift */,
 				95ACCE2C2080188900BC6977 /* EquipTableViewCell.swift */,
 				950ABA4C20B0B17A0007E50F /* ShipDetailTableViewCell.swift */,
@@ -149,6 +152,7 @@
 				TargetAttributes = {
 					954A67DB2053E54F001781EC = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = GT64ALWSA5;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -199,6 +203,7 @@
 				951D20E820B1C4BF00763178 /* EquipDetailsViewController.swift in Sources */,
 				950ABA4D20B0B17A0007E50F /* ShipDetailTableViewCell.swift in Sources */,
 				951D20ED20B51ECF00763178 /* ProductsViewController.swift in Sources */,
+				82591B0C20F954E700096093 /* ProductDescriptionViewController.swift in Sources */,
 				95ACCE2D2080188900BC6977 /* EquipTableViewCell.swift in Sources */,
 				95622E5120B9953000165B70 /* ProductViewController.swift in Sources */,
 				95F6BE2020B0894800F8AFCB /* EditingViewController.swift in Sources */,
@@ -333,6 +338,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GT64ALWSA5;
 				INFOPLIST_FILE = alphatron/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ANN.alphatron;
@@ -347,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GT64ALWSA5;
 				INFOPLIST_FILE = alphatron/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ANN.alphatron;

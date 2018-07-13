@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class ProductViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var image1: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -19,6 +19,7 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func onDownloadManualClick(_ sender: Any) {
         openManual()
     }
+    
     var product: [String: Any] = [:]
     
     override func viewDidLoad() {
@@ -35,6 +36,9 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.button1.isHidden = false
             }
         }
+        
+        let tapTerm = UITapGestureRecognizer(target: self, action: #selector(self.tapDesc))
+        fullDescText.addGestureRecognizer(tapTerm)
         
     }
 
@@ -67,6 +71,15 @@ class ProductViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProductBulletTableViewCell
         cell.label1.text = (product["ProductBulletFact"] as? [[String: Any]] ?? [])[indexPath.row]["Fact"] as? String ?? ""
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nextView = segue.destination as! ProductDescriptionViewController
+        nextView.product = product
+    }
+
+    func tapDesc() {
+        performSegue(withIdentifier: "toDesc", sender: self)
     }
 
 }

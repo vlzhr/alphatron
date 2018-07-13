@@ -141,27 +141,28 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         
-        //if Global.auth {
-        //    continueToFleet()
-        //} else {
-        //    print("let's login!")
-        //    auth(login: "test@gmail.com", password: "tes2t")
-        //}
+        view.addGestureRecognizer(tap)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         if Global.auth {
-            continueToFleet()
+            //continueToFleet()
         } else {
-            print("let's login!")
-            auth(login: "test@gmail.com", password: "test")
+            //print("let's login!")
+            //auth(login: "test@gmail.com", password: "test")
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func dismissKeyboard() {
+    //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     func MD5(string: String) -> String {
